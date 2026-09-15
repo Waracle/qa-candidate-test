@@ -22,12 +22,12 @@ function HeaderRight({ navigation }: any) {
   const { isAuthed, user } = useAuth();
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
-      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-        <Text style={{ color: colors.white, fontWeight: '700' }}>{isAuthed ? (user?.firstName || 'Account') : 'Sign in'}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-        <Text style={{ color: colors.white, fontWeight: '700' }}>Cart{count ? ` (${count})` : ''}</Text>
-      </TouchableOpacity>
+        <TouchableOpacity testID="header_signin_button" onPress={() => navigation.navigate('Login')}>
+          <Text style={{ color: colors.white, fontWeight: '700' }}>{isAuthed ? (user?.firstName || 'Account') : 'Sign in'}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity testID="header_cart_button" onPress={() => navigation.navigate('Cart')}>
+          <Text style={{ color: colors.white, fontWeight: '700' }}>Cart{count ? ` (${count})` : ''}</Text>
+        </TouchableOpacity>
     </View>
   );
 }

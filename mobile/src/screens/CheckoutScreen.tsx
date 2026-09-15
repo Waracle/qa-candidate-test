@@ -78,24 +78,24 @@ export default function CheckoutScreen({ navigation, route }: any) {
         keyboardDismissMode="on-drag"
         showsVerticalScrollIndicator
       >
-        <Text style={styles.h2}>Shipping details</Text>
-        <Field label="Full name" value={name} onChange={setName} placeholder="John Doe" />
-        <Field label="Email" value={emailAddr} onChange={setEmailAddr} placeholder="you@example.com" keyboard="email-address" />
-        <Field label="Address" value={address} onChange={setAddress} placeholder="1 Example Street" />
-        <Field label="City" value={city} onChange={setCity} placeholder="Glasgow" />
-        <Field label="Postcode" value={postcode} onChange={setPostcode} placeholder="G1 1AA" />
+          <Text style={styles.h2}>Shipping details</Text>
+          <Field label="Full name" value={name} onChange={setName} placeholder="John Doe" testID="checkout_name_input" />
+          <Field label="Email" value={emailAddr} onChange={setEmailAddr} placeholder="you@example.com" keyboard="email-address" testID="checkout_email_input" />
+          <Field label="Address" value={address} onChange={setAddress} placeholder="1 Example Street" testID="checkout_address_input" />
+          <Field label="City" value={city} onChange={setCity} placeholder="Glasgow" testID="checkout_city_input" />
+          <Field label="Postcode" value={postcode} onChange={setPostcode} placeholder="G1 1AA" testID="checkout_postcode_input" />
 
-        <Text style={[styles.h2, { marginTop: 22 }]}>Payment details</Text>
-        <Field label="Name on card" value={cardName} onChange={setCardName} placeholder="John Doe" />
-        <Field label="Card number" value={cardNumber} onChange={(v: string) => setCardNumber(formatCard(v))} placeholder="4242 4242 4242 4242" keyboard="number-pad" />
-        <View style={{ flexDirection: 'row', gap: 12 }}>
-          <View style={{ flex: 1 }}>
-            <Field label="Expiry (MM/YY)" value={expiry} onChange={(v: string) => setExpiry(formatExpiry(v))} placeholder="12/28" keyboard="number-pad" />
+          <Text style={[styles.h2, { marginTop: 22 }]}>Payment details</Text>
+          <Field label="Name on card" value={cardName} onChange={setCardName} placeholder="John Doe" testID="checkout_cardname_input" />
+          <Field label="Card number" value={cardNumber} onChange={(v: string) => setCardNumber(formatCard(v))} placeholder="4242 4242 4242 4242" keyboard="number-pad" testID="checkout_cardnumber_input" />
+          <View style={{ flexDirection: 'row', gap: 12 }}>
+            <View style={{ flex: 1 }}>
+              <Field label="Expiry (MM/YY)" value={expiry} onChange={(v: string) => setExpiry(formatExpiry(v))} placeholder="12/28" keyboard="number-pad" testID="checkout_expiry_input" />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Field label="CVC" value={cvc} onChange={(v: string) => setCvc(v.replace(/\D/g, '').slice(0, 4))} placeholder="123" keyboard="number-pad" secure testID="checkout_cvc_input" />
+            </View>
           </View>
-          <View style={{ flex: 1 }}>
-            <Field label="CVC" value={cvc} onChange={(v: string) => setCvc(v.replace(/\D/g, '').slice(0, 4))} placeholder="123" keyboard="number-pad" secure />
-          </View>
-        </View>
         <Text style={styles.secure}>Demo only — card details are checked on your device and are not sent or stored.</Text>
 
         <View style={styles.summary}>
@@ -111,16 +111,16 @@ export default function CheckoutScreen({ navigation, route }: any) {
 
       {/* Pinned footer so the pay button is always reachable */}
       <View style={styles.footer}>
-        {!!error && <Text style={styles.footerError}>{error}</Text>}
-        <TouchableOpacity style={[styles.cta, busy && { opacity: 0.6 }]} onPress={placeOrder} disabled={busy}>
-          <Text style={styles.ctaText}>{busy ? 'Placing order...' : `Pay & Place Order  ·  £${totals.total.toFixed(2)}`}</Text>
-        </TouchableOpacity>
+          {!!error && <Text style={styles.footerError}>{error}</Text>}
+          <TouchableOpacity style={[styles.cta, busy && { opacity: 0.6 }]} testID="checkout_pay_button" onPress={placeOrder} disabled={busy}>
+            <Text style={styles.ctaText}>{busy ? 'Placing order...' : `Pay & Place Order   ·   £${totals.total.toFixed(2)}`}</Text>
+          </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
   );
 }
 
-function Field({ label, value, onChange, placeholder, keyboard, secure }: any) {
+function Field({ label, value, onChange, placeholder, keyboard, secure, testID }: any) {
   return (
     <View>
       <Text style={styles.label}>{label}</Text>
@@ -128,6 +128,7 @@ function Field({ label, value, onChange, placeholder, keyboard, secure }: any) {
         value={value}
         onChangeText={onChange}
         placeholder={placeholder}
+        testID={testID}
         keyboardType={keyboard || 'default'}
         secureTextEntry={!!secure}
         autoCapitalize={keyboard === 'email-address' ? 'none' : 'sentences'}

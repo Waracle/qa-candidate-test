@@ -24,9 +24,9 @@ export default function ProductsScreen({ navigation }: any) {
       </View>
       <View style={styles.filters}>
         {CATS.map((c) => (
-          <TouchableOpacity key={c} onPress={() => setCat(c)} style={[styles.chip, cat === c && styles.chipOn]}>
-            <Text style={[styles.chipText, cat === c && styles.chipTextOn]}>{c}</Text>
-          </TouchableOpacity>
+             <TouchableOpacity key={c} testID={`products_filter_${c.toLowerCase()}`} onPress={() => setCat(c)} style={[styles.chip, cat === c && styles.chipOn]}>
+               <Text style={[styles.chipText, cat === c && styles.chipTextOn]}>{c}</Text>
+             </TouchableOpacity>
         ))}
       </View>
 
@@ -40,12 +40,12 @@ export default function ProductsScreen({ navigation }: any) {
           columnWrapperStyle={{ gap: 12 }}
           contentContainerStyle={{ gap: 12, padding: 16 }}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail', { id: item.id })}>
-              <ProductArt image={item.image} height={140} />
-              <Text style={styles.cat}>{item.category.toUpperCase()}</Text>
-              <Text style={styles.name}>{item.name}</Text>
-              <Text style={styles.price}>£{item.price.toFixed(2)}</Text>
-            </TouchableOpacity>
+              <TouchableOpacity style={styles.card} testID={`products_product_card_${item.id}`} onPress={() => navigation.navigate('ProductDetail', { id: item.id })}>
+                <ProductArt image={item.image} height={140} />
+                <Text style={styles.cat}>{item.category.toUpperCase()}</Text>
+                <Text style={styles.name}>{item.name}</Text>
+                <Text style={styles.price}>£{item.price.toFixed(2)}</Text>
+              </TouchableOpacity>
           )}
         />
       )}

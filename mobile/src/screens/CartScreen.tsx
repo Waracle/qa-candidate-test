@@ -22,12 +22,12 @@ export default function CartScreen({ navigation }: any) {
 
   if (lines.length === 0) {
     return (
-      <View style={styles.empty}>
-        <Text style={styles.emptyText}>Your cart is empty.</Text>
-        <TouchableOpacity style={styles.cta} onPress={() => navigation.navigate('Products')}>
-          <Text style={styles.ctaText}>Start Shopping</Text>
-        </TouchableOpacity>
-      </View>
+             <View style={styles.empty}>
+               <Text style={styles.emptyText}>Your cart is empty.</Text>
+               <TouchableOpacity style={styles.cta} testID="cart_start_shopping_button" onPress={() => navigation.navigate('Products')}>
+                 <Text style={styles.ctaText}>Start Shopping</Text>
+               </TouchableOpacity>
+             </View>
     );
   }
 
@@ -45,17 +45,17 @@ export default function CartScreen({ navigation }: any) {
             <Text style={styles.meta}>Size {l.size} · Qty {l.quantity}</Text>
           </View>
           <Text style={styles.lineTotal}>£{(l.product.price * l.quantity).toFixed(2)}</Text>
-          <TouchableOpacity onPress={() => remove(l.product.id, l.size)}>
-            <Text style={styles.remove}>Remove</Text>
-          </TouchableOpacity>
+               <TouchableOpacity testID={`cart_remove_button_${l.product.id}_${l.size}`} onPress={() => remove(l.product.id, l.size)}>
+                 <Text style={styles.remove}>Remove</Text>
+               </TouchableOpacity>
         </View>
       ))}
 
       <View style={styles.couponRow}>
-        <TextInput value={code} onChangeText={setCode} placeholder="Coupon code (try WARACLE25)" autoCapitalize="characters" style={styles.input} />
-        <TouchableOpacity style={styles.applyBtn} onPress={apply}>
-          <Text style={styles.applyText}>Apply</Text>
-        </TouchableOpacity>
+           <TextInput value={code} onChangeText={setCode} placeholder="Coupon code (try WARACLE25)" autoCapitalize="characters" testID="cart_coupon_input" style={styles.input} />
+           <TouchableOpacity style={styles.applyBtn} testID="cart_apply_button" onPress={apply}>
+             <Text style={styles.applyText}>Apply</Text>
+           </TouchableOpacity>
       </View>
       {!!note && <Text style={styles.note}>{note}</Text>}
 
@@ -67,9 +67,9 @@ export default function CartScreen({ navigation }: any) {
         <Line label="Total" value={totals.total} bold />
       </View>
 
-      <TouchableOpacity style={styles.cta} onPress={proceed}>
-        <Text style={styles.ctaText}>Proceed to Checkout</Text>
-      </TouchableOpacity>
+         <TouchableOpacity style={styles.cta} testID="cart_proceed_button" onPress={proceed}>
+           <Text style={styles.ctaText}>Proceed to Checkout</Text>
+         </TouchableOpacity>
       {!isAuthed && <Text style={styles.hint}>You'll be asked to sign in or create an account before placing your order.</Text>}
     </ScrollView>
   );

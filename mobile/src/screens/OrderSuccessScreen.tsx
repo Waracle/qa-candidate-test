@@ -13,9 +13,9 @@ export default function OrderSuccessScreen({ navigation, route }: any) {
         <Row label="Order number" value={orderNumber} />
         <Row label="Total paid" value={`£${Number(total || 0).toFixed(2)}`} />
       </View>
-      <TouchableOpacity style={styles.cta} onPress={() => navigation.navigate('Products')}>
-        <Text style={styles.ctaText}>Continue Shopping</Text>
-      </TouchableOpacity>
+         <TouchableOpacity style={styles.cta} testID="order_success_continue_button" onPress={() => navigation.navigate('Products')}>
+           <Text style={styles.ctaText}>Continue Shopping</Text>
+         </TouchableOpacity>
     </View>
   );
 }

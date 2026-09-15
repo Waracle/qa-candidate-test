@@ -19,12 +19,12 @@ export default function HomeScreen({ navigation }: any) {
         <Text style={styles.heroTitle}>{TAGLINE}</Text>
         <Text style={styles.heroSub}>Official Waracle apparel and gear, for the people who design and engineer the products millions rely on.</Text>
         <View style={{ flexDirection: 'row', gap: 12, marginTop: 20 }}>
-          <TouchableOpacity style={styles.cta} onPress={() => navigation.navigate('Products')}>
-            <Text style={styles.ctaText}>Shop Now</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.ctaOutline} onPress={() => navigation.navigate('Login')}>
-            <Text style={styles.ctaOutlineText}>Sign in / Register</Text>
-          </TouchableOpacity>
+            <TouchableOpacity style={styles.cta} testID="home_shop_now_button" onPress={() => navigation.navigate('Products')}>
+              <Text style={styles.ctaText}>Shop Now</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.ctaOutline} testID="home_signin_button" onPress={() => navigation.navigate('Login')}>
+              <Text style={styles.ctaOutlineText}>Sign in / Register</Text>
+            </TouchableOpacity>
         </View>
       </View>
 
@@ -57,12 +57,12 @@ export default function HomeScreen({ navigation }: any) {
           columnWrapperStyle={{ gap: 12 }}
           contentContainerStyle={{ gap: 12, marginTop: 12 }}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetail', { id: item.id })}>
-              <ProductArt image={item.image} height={130} />
-              <Text style={styles.cat}>{item.category.toUpperCase()}</Text>
-              <Text style={styles.name}>{item.name}</Text>
-              <Text style={styles.price}>£{item.price.toFixed(2)}</Text>
-            </TouchableOpacity>
+             <TouchableOpacity style={styles.card} testID={`home_product_card_${item.id}`} onPress={() => navigation.navigate('ProductDetail', { id: item.id })}>
+               <ProductArt image={item.image} height={130} />
+               <Text style={styles.cat}>{item.category.toUpperCase()}</Text>
+               <Text style={styles.name}>{item.name}</Text>
+               <Text style={styles.price}>£{item.price.toFixed(2)}</Text>
+             </TouchableOpacity>
           )}
         />
       </View>

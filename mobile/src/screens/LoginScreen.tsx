@@ -26,14 +26,14 @@ export default function LoginScreen({ navigation, route }: any) {
     return (
       <View style={styles.wrap}>
         <Logo variant="dark" width={150} />
-        <Text style={styles.h1}>You're signed in</Text>
-        <Text style={styles.meta}>Signed in as {user?.firstName} ({user?.email}).</Text>
-        <TouchableOpacity style={styles.cta} onPress={() => navigation.navigate('Products')}>
-          <Text style={styles.ctaText}>Continue Shopping</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.secondary} onPress={logout}>
-          <Text style={styles.secondaryText}>Log out</Text>
-        </TouchableOpacity>
+             <Text style={styles.h1}>You're signed in</Text>
+            <Text style={styles.meta}>Signed in as {user?.firstName} ({user?.email}).</Text>
+            <TouchableOpacity style={styles.cta} testID="login_continue_button" onPress={() => navigation.navigate('Products')}>
+              <Text style={styles.ctaText}>Continue Shopping</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.secondary} testID="login_logout_button" onPress={logout}>
+              <Text style={styles.secondaryText}>Log out</Text>
+            </TouchableOpacity>
       </View>
     );
   }
@@ -45,17 +45,17 @@ export default function LoginScreen({ navigation, route }: any) {
       <Text style={styles.h1}>Sign in</Text>
 
       <Text style={styles.label}>Email</Text>
-      <TextInput value={email} onChangeText={setEmail} autoCapitalize="none" keyboardType="email-address" style={styles.input} placeholder="you@example.com" />
-      <Text style={styles.label}>Password</Text>
-      <TextInput value={password} onChangeText={setPassword} secureTextEntry style={styles.input} placeholder="Your password" />
+        <TextInput value={email} onChangeText={setEmail} autoCapitalize="none" keyboardType="email-address" testID="login_email_input" style={styles.input} placeholder="you@example.com" />
+        <Text style={styles.label}>Password</Text>
+        <TextInput value={password} onChangeText={setPassword} secureTextEntry testID="login_password_input" style={styles.input} placeholder="Your password" />
 
-      {!!error && <Text style={styles.error}>{error}</Text>}
+        {!!error && <Text style={styles.error}>{error}</Text>}
 
-      <TouchableOpacity style={[styles.cta, busy && { opacity: 0.6 }]} onPress={submit} disabled={busy}>
-        <Text style={styles.ctaText}>{busy ? 'Signing in...' : 'Sign In'}</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={[styles.cta, busy && { opacity: 0.6 }]} testID="login_submit_button" onPress={submit} disabled={busy}>
+          <Text style={styles.ctaText}>{busy ? 'Signing in...' : 'Sign In'}</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.linkRow} onPress={() => navigation.navigate('Register', { next })}>
+        <TouchableOpacity style={styles.linkRow} testID="login_create_account_button" onPress={() => navigation.navigate('Register', { next })}>
         <Text style={styles.linkMuted}>New here? </Text>
         <Text style={styles.link}>Create an account</Text>
       </TouchableOpacity>

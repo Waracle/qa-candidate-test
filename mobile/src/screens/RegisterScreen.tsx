@@ -32,22 +32,22 @@ export default function RegisterScreen({ navigation, route }: any) {
       <Logo variant="dark" width={150} />
       <Text style={styles.h1}>Create your account</Text>
 
-      <Text style={styles.label}>First name</Text>
-      <TextInput value={firstName} onChangeText={setFirstName} style={styles.input} placeholder="John" />
-      <Text style={styles.label}>Last name</Text>
-      <TextInput value={lastName} onChangeText={setLastName} style={styles.input} placeholder="Doe" />
-      <Text style={styles.label}>Email</Text>
-      <TextInput value={email} onChangeText={setEmail} autoCapitalize="none" keyboardType="email-address" style={styles.input} placeholder="you@example.com" />
-      <Text style={styles.label}>Password</Text>
-      <TextInput value={password} onChangeText={setPassword} secureTextEntry style={styles.input} placeholder="At least 8 characters" />
+         <Text style={styles.label}>First name</Text>
+         <TextInput value={firstName} onChangeText={setFirstName} testID="register_firstname_input" style={styles.input} placeholder="John" />
+         <Text style={styles.label}>Last name</Text>
+         <TextInput value={lastName} onChangeText={setLastName} testID="register_lastname_input" style={styles.input} placeholder="Doe" />
+         <Text style={styles.label}>Email</Text>
+         <TextInput value={email} onChangeText={setEmail} autoCapitalize="none" keyboardType="email-address" testID="register_email_input" style={styles.input} placeholder="you@example.com" />
+         <Text style={styles.label}>Password</Text>
+         <TextInput value={password} onChangeText={setPassword} secureTextEntry testID="register_password_input" style={styles.input} placeholder="At least 8 characters" />
 
-      {!!error && <Text style={styles.error}>{error}</Text>}
+         {!!error && <Text style={styles.error}>{error}</Text>}
 
-      <TouchableOpacity style={[styles.cta, busy && { opacity: 0.6 }]} onPress={submit} disabled={busy}>
-        <Text style={styles.ctaText}>{busy ? 'Creating...' : 'Create Account'}</Text>
-      </TouchableOpacity>
+         <TouchableOpacity style={[styles.cta, busy && { opacity: 0.6 }]} testID="register_submit_button" onPress={submit} disabled={busy}>
+           <Text style={styles.ctaText}>{busy ? 'Creating...' : 'Create Account'}</Text>
+         </TouchableOpacity>
 
-      <TouchableOpacity style={styles.linkRow} onPress={() => navigation.navigate('Login', { next })}>
+            <TouchableOpacity style={styles.linkRow} testID="register_signin_button" onPress={() => navigation.navigate('Login', { next })}>
         <Text style={styles.linkMuted}>Already have an account? </Text>
         <Text style={styles.link}>Sign in</Text>
       </TouchableOpacity>

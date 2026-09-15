@@ -27,15 +27,15 @@ export default function ProductDetailScreen({ route, navigation }: any) {
       <Text style={styles.label}>Size</Text>
       <View style={styles.sizes}>
         {product.sizes.map((s) => (
-          <TouchableOpacity key={s} onPress={() => setSize(s)} style={[styles.size, size === s && styles.sizeOn]}>
-            <Text style={[styles.sizeText, size === s && styles.sizeTextOn]}>{s}</Text>
-          </TouchableOpacity>
+              <TouchableOpacity key={s} testID={`product_detail_size_selector_${s}`} onPress={() => setSize(s)} style={[styles.size, size === s && styles.sizeOn]}>
+                <Text style={[styles.sizeText, size === s && styles.sizeTextOn]}>{s}</Text>
+              </TouchableOpacity>
         ))}
       </View>
 
-      <TouchableOpacity style={styles.cta} onPress={() => { add(product, size); navigation.navigate('Cart'); }}>
-        <Text style={styles.ctaText}>Add to Cart</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.cta} testID="product_detail_add_button" onPress={() => { add(product, size); navigation.navigate('Cart'); }}>
+          <Text style={styles.ctaText}>Add to Cart</Text>
+        </TouchableOpacity>
     </ScrollView>
   );
 }
