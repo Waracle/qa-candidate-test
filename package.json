@@ -17,6 +17,6 @@
     "launch": "concurrently --passthrough-inputs \"npm --workspace backend run dev\" \"npm --workspace mobile run start\""
   },
   "devDependencies": {
-    "concurrently": "^10.0.5"
+    "concurrently": "^10.0.6"
   }
 }
